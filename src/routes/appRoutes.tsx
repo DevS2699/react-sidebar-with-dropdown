@@ -16,6 +16,12 @@ import AlertPage from "../pages/component/AlertPage";
 import ButtonPage from "../pages/component/ButtonPage";
 import InstallationPage from "../pages/installation/InstallationPage";
 import DocumentationPage from "../pages/documentation/DocumentationPage";
+import HouseRoundedIcon from '@mui/icons-material/HouseRounded';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import HospitalProfilePage from "../pages/hospital/HospitalProfilePage";
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import PreauthorizationPage from "../pages/preauthorization/PreauthorizationPage";
+import RecordDetailsPage from "../pages/home/recordDetails/RecordDetailsPage";
 
 const appRoutes: RouteType[] = [
   {
@@ -24,12 +30,12 @@ const appRoutes: RouteType[] = [
     state: "home"
   },
   {
-    path: "/installation",
-    element: <InstallationPage />,
-    state: "installation",
+    path: "/",
+    element: <HomePage />,
+    state: "",
     sidebarProps: {
-      displayText: "Installation",
-      icon: <FileDownloadOutlinedIcon />
+      displayText: "Home",
+      icon: <HouseRoundedIcon />
     }
   },
   {
@@ -46,14 +52,14 @@ const appRoutes: RouteType[] = [
         element: <DashboardIndex />,
         state: "dashboard.index"
       },
-      {
-        path: "/dashboard/default",
-        element: <DefaultPage />,
-        state: "dashboard.default",
-        sidebarProps: {
-          displayText: "Default"
-        },
-      },
+      // {
+      //   path: "/dashboard/default",
+      //   element: <DefaultPage />,
+      //   state: "dashboard.default",
+      //   sidebarProps: {
+      //     displayText: "Default"
+      //   },
+      // },
       {
         path: "/dashboard/analytics",
         element: <AnalyticsPage />,
@@ -77,8 +83,8 @@ const appRoutes: RouteType[] = [
     element: <ComponentPageLayout />,
     state: "component",
     sidebarProps: {
-      displayText: "Components",
-      icon: <AppsOutlinedIcon />
+      displayText: "Notifications",
+      icon: <NotificationsIcon />
     },
     child: [
       {
@@ -86,7 +92,7 @@ const appRoutes: RouteType[] = [
         element: <AlertPage />,
         state: "component.alert",
         sidebarProps: {
-          displayText: "Alert"
+          displayText: "Approved Claims"
         },
       },
       {
@@ -94,7 +100,7 @@ const appRoutes: RouteType[] = [
         element: <ButtonPage />,
         state: "component.button",
         sidebarProps: {
-          displayText: "Button"
+          displayText: "Claims Under Process"
         }
       }
     ]
@@ -109,13 +115,23 @@ const appRoutes: RouteType[] = [
     }
   },
   {
-    path: "/changelog",
-    element: <ChangelogPage />,
-    state: "changelog",
+    path: "/hospital",
+    element: <HospitalProfilePage />,
+    state: "hospital",
     sidebarProps: {
-      displayText: "Changelog",
-      icon: <FormatListBulletedOutlinedIcon />
+      displayText: "Hospital Profile",
+      icon: <AssignmentIndIcon />
     }
+  },
+  {
+    path: "/preauth-form",
+    element: <PreauthorizationPage />,
+    state: "changelog",
+  },
+  {
+    path: "/recordDetails",
+    element: <RecordDetailsPage />,
+    state: "recordDetails",
   }
 ];
 

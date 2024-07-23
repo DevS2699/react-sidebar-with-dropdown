@@ -1,0 +1,8 @@
+.two-tone-background {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to right, #FB4E0B 0%,#FB4E0B 30%,white 30%,white 100%);
+  align-items: baseline;
+  justify-content: center;
+}

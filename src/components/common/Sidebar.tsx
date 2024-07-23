@@ -5,6 +5,8 @@ import sizeConfigs from "../../configs/sizeConfigs";
 import appRoutes from "../../routes/appRoutes";
 import SidebarItem from "./SidebarItem";
 import SidebarItemCollapse from "./SidebarItemCollapse";
+import Logo from '../../assets/images/exl_logo.png'
+
 
 const Sidebar = () => {
   return (
@@ -28,8 +30,10 @@ const Sidebar = () => {
             sx={{ width: "100%" }}
             direction="row"
             justifyContent="center"
+            alignItems='center'
           >
-            <Avatar src={assets.images.logo} />
+            <img src={Logo} style={{width:"12vh"}} alt="" />
+            {/* <Avatar src={assets.images.logo} /> */}
           </Stack>
         </Toolbar>
         {appRoutes.map((route, index) => (
