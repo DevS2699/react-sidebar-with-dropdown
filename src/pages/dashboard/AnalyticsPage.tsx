@@ -16,7 +16,7 @@ import {
   Legend,
   ChartData,
 } from 'chart.js';
-
+ 
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -25,8 +25,8 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
-
+ 
+ 
 const Icon1 = (props: any) => (
   <SvgIcon {...props}>
     <rect x="2" y="2" width="20" height="6" />
@@ -34,13 +34,13 @@ const Icon1 = (props: any) => (
     <rect x="2" y="18" width="20" height="6" />
   </SvgIcon>
 );
-
+ 
 const Icon2 = (props: any) => (
   <SvgIcon {...props}>
     <path d="M9 19L2 12l1.41-1.41L9 16.17l12-12L22.41 6 9 19z" />
   </SvgIcon>
 );
-
+ 
 const CardStyled = styled(Card)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
@@ -48,19 +48,19 @@ const CardStyled = styled(Card)(({ theme }) => ({
   padding: theme.spacing(2),
   color: theme.palette.common.white,
 }));
-
+ 
 const PreauthorizedRaisedCard = styled(CardStyled)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
 }));
-
+ 
 const PreauthorizedApprovedCard = styled(CardStyled)(({ theme }) => ({
   backgroundColor: theme.palette.success.main,
 }));
-
+ 
 const PreauthorizedRejectedCard = styled(CardStyled)(({ theme }) => ({
   backgroundColor: theme.palette.error.main,
 }));
-
+ 
 const options = {
   plugins: {
     title: {
@@ -85,9 +85,9 @@ const options = {
     },
   },
 };
-
+ 
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
+ 
 const data: ChartData<'bar'> = {
   labels,
   datasets: [
@@ -108,11 +108,11 @@ const data: ChartData<'bar'> = {
     },
   ],
 };
-
-
-
+ 
+ 
+ 
 type Props = {};
-
+ 
 const handleTestApi = async () => {
   const token = '00D5g00000KLGOg!ARwAQBr6tqVZlTeP7dyzN6LoIrC0tyxw1_Pt4gpgsXlje9rCL1iSmevN4DeunI1cg6p2fbApgBQjCQriejDr0dTwobJKqPp3';
   const url = 'https://exlservice8-dev-ed.develop.my.salesforce.com/services/data/v55.0/sobjects/Opportunity/0065g00000ZexukAAB';
@@ -122,7 +122,7 @@ const handleTestApi = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-
+ 
     console.log('API Response:', response.data);
     // Handle the response data as needed
   } catch (error) {
@@ -131,7 +131,7 @@ const handleTestApi = async () => {
     // Handle error appropriately
   }
 };
-
+ 
 const AnalyticsPage = (props: Props) => {
   return (
     <Container className="mt-4">
@@ -158,7 +158,7 @@ const AnalyticsPage = (props: Props) => {
             </CardContent>
             <CardContent>
               <Typography variant="h3" component="div">
-                1542
+                142
               </Typography>
               <Typography variant="subtitle1" component="div">
                 Preauthorized Approved
@@ -171,7 +171,7 @@ const AnalyticsPage = (props: Props) => {
             </CardContent>
             <CardContent>
               <Typography variant="h3" component="div">
-                100
+                30
               </Typography>
               <Typography variant="subtitle1" component="div">
                 Preauthorized Rejected
@@ -185,8 +185,8 @@ const AnalyticsPage = (props: Props) => {
     <Bar data={data} />;
     </div>
     </Container>
-
+ 
   );
 };
-
+ 
 export default AnalyticsPage;

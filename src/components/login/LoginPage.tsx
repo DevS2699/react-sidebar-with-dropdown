@@ -1,118 +1,75 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Container, TextField, Button, Typography, Box } from '@mui/material';
 import './styles.css';  // Import the CSS file
 
-interface Props {
-  setIsLoggedIn: (isLoggedIn: boolean) => void;
-}
-
-const LoginPage: React.FC<Props> = ({ setIsLoggedIn }) => {
+const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: any) => {
     e.preventDefault();
-    // Implement your login logic here
-    if (username === 'admin' && password === 'password') {
-      setIsLoggedIn(true);
+    const clientId = '3MVG9fe4g9fhX0E43bWoXe8E4b8bA38bA.8rYJSt6XzbM7n6dvN3qsK205GG32D_A.kq4qmlJXehtnw3DtTag';
+    const clientSecret = '895F2E621028F261ABBDCA206623E8F440EE6048DD4737474669543BE00F15F5';
+    const endpoint = 'https://login.salesforce.com/services/oauth2/token';  // Use the appropriate endpoint for production or sandbox
+
+    const params = new URLSearchParams();
+    params.append('grant_type', 'password');
+    params.append('client_id', clientId);
+    params.append('client_secret', clientSecret);
+    params.append('username', username);
+    params.append('password', password);
+
+    try {
+      const response = await axios.post(endpoint, params.toString(), {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      });
+
+      const token = response.data.access_token;
+      localStorage.setItem('token', token);
       navigate('/');
-    } else {
-      alert('Invalid credentials');
+    } catch (err) {
+      console.log('Invalid credentials or login failed');
     }
   };
 
   return (
     <div className='two-tone-background'>
       <Container maxWidth="sm">
-      <Box sx={{ mt: 25 }}>
-        <Typography variant="h4" gutterBottom>Login</Typography>
-        <form onSubmit={handleLogin}>
-          <TextField
-            label="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            fullWidth
-            margin="normal"
-          />
-          <Button type="submit" variant="contained" color="primary" fullWidth>
-            Login
-          </Button>
-        </form>
-      </Box>
-    </Container>
+        <Box sx={{ mt: 25 }}>
+          <Typography variant="h4" gutterBottom>Login</Typography>
+          <form onSubmit={handleLogin}>
+            <TextField
+              label="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              fullWidth
+              margin="normal"
+            />
+            <Button type="submit" variant="contained" color="primary" fullWidth>
+              Login
+            </Button>
+          </form>
+          {error && <Typography color="error">{error}</Typography>}
+        </Box>
+      </Container>
     </div>
   );
 };
 
 export default LoginPage;
-
-// import React, { useState } from 'react';
-// import axios from 'axios';
-// import { Link, Navigate } from 'react-router-dom';
-
-
-// const LoginPage = () => {
-//     const [username, setUsername] = useState('');
-//     const [password, setPassword] = useState('');
-//     const [error, setError] = useState(null);
-//     const [token, setToken] = useState(null);
-
-//     const handleLogin = async (e: any) => {
-//         e.preventDefault();
-//         const clientId = '3MVG9fe4g9fhX0E43bWoXe8E4bzyTY29rUIq5SAW9mO6xxJGi_S8mXQL1aZ1mY.qCOpLYULgl';
-//         const clientSecret = '5C19C7BD9D9B9C734C5811C7EC07D5E0B71EC3561BD90A6C5A33AA0D47FBFB7C';
-
-//         try {
-//             const response = await axios.post('https://login.salesforce.com/services/oauth2/token', {
-//                 grant_type: 'password',
-//                 client_id: clientId,
-//                 client_secret: clientSecret,
-//                 username: username,
-//                 password: password
-//           }, {
-//             headers: {
-//               'Content-Type': 'multipart/form-data'
-//             }
-//           }
-//         )
-
-//             setToken(response.data.access_token);
-//             console.log(response.data);
-//             <Navigate to="/" replace />
-//             // Handle successful login here (e.g., redirect to another page)
-//         } catch (err) {
-//             // setError(err.response ? err.response.data : 'Login failed');
-//             console.log('Error occured while login')
-//         }
-//     };
-
-//     return (
-//         <form onSubmit={handleLogin}>
-//             <div>
-//                 <label>Username</label>
-//                 <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
-//             </div>
-//             <div>
-//                 <label>Password</label>
-//                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-//             </div>
-//             <Link to={'/'}><button type="submit" onClick={handleLogin}>Login</button></Link>
-//             {error && <p>{error}</p>}
-//         </form>
-//     );
-// };
-
-// export default LoginPage;
-

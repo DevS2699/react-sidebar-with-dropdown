@@ -22,6 +22,7 @@ import HospitalProfilePage from "../pages/hospital/HospitalProfilePage";
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import PreauthorizationPage from "../pages/preauthorization/PreauthorizationPage";
 import RecordDetailsPage from "../pages/home/recordDetails/RecordDetailsPage";
+import LoginPage from "../components/login/LoginPage";
 
 const appRoutes: RouteType[] = [
   {
@@ -132,7 +133,7 @@ const appRoutes: RouteType[] = [
     path: "/recordDetails",
     element: <RecordDetailsPage />,
     state: "recordDetails",
-  }
+  },
 ];
 
 export default appRoutes;
